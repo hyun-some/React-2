@@ -49,3 +49,40 @@ SSR이 최적의 렌더링 전략이 아닌 경우
 - 중요한 것은 NEST.JS가 기본적으로 빌드 시점에 정적으로 페이지를 만든다는 것입니다.
 
 - 페이지에서 외부 API를 호출하거나 데이터베이스에 접근하는 등 동적 작업을 해야 한다면 해당하는 함수르 페이지에 EXPXORT를 해야합니다.
+
+코드 설명(36P)
+
+- 이 페이지는 DIV 요소 안에 문자열만 표시합니다.
+
+- 외부 API를 호출 하지 않으며 항상 같은 문자열만 표시 됩니다.
+
+//function IndexPage() {
+    return <div>This is the index page.</div>;
+}
+
+export default IndexPage;
+
+- 다음 코드는 페이지를 요청할 때마다
+사용자 환영 문구를 표시합니다.
+
+- 특정 사용자 정보를 가져온 다음 클라이언트에 전달해서 사용할 수 있도록 하고 있습니다.
+
+- 이 경우 미리 예약된 getServerSideProps()함수를 사용합니다.
+
+export async function getServerSideProps() {
+    const userRequst = await fetch('https://example.com/api/user');
+    const userData = await userRequest.json();
+
+    return {
+        props: {
+            user: userData,
+        },
+    };
+}
+
+function IndexPage(props) {
+    return <div>Welcome, {props.user.name}!</div>;
+}
+
+export default IndexPage;
+
