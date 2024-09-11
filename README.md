@@ -185,3 +185,111 @@ function Highlight({ code }) {
 }
 
 export default Highlight;
+
+- 다음과 같이 React.useEffect와 React.useState를 함께 써서 특정 컴포넌트를 정확히 클라이언트에서만 렌더링하도록 지정할 수 있습니다.
+
+import {useEffect, useState} from 'react';
+import Highlight from '../components/Highlight';
+
+function UseEffectPage() {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    return (
+        <div>
+        {isClient &&
+        (<Highlight
+        code={"console.log('Hello, world!')"}
+        language='js'
+        />)
+        }
+        </div>
+    );
+}
+
+export default UseEffectPage;
+
+process.browser 변수
+
+- 서버에서 렌더링할 때 브라우저 전용 API로 인한 문제를 다른 방법으로 해결할 수도 있습니다.
+
+- PROCESS BROWSER 값에 따라서 스크립트와 컴포넌트로 조건별로 실행하는 것입니다.
+
+- 이 변수는 Boolean 값으로, 코드를 클라이언트에서 실행하면 true, 서버에서 실행하면 false 값을 갖습니다.
+
+- 다음 코들르 실행하면 처음에는 "~server-side"로 표시되고, 리액트 하이드레이션이 끝나면 바로 "~client-side"라는 문자열로 바뀝니다.
+
+하지만 process.browser에 대한 지원은 곧 중단될 예정입니다.
+
+function IndexPage() {
+    const side = process.browser ? 'client' : 'server';
+
+    return <div>You're currently on the {side}-side.</div>;
+}
+
+export default IndexPage;
+
+
+대신 좀 더 정확한 의미를 갖는 typeof window를 사용할 수 있습니다.
+
+- typeof window를 서버에서 실행하면 그 값은 문자열 "undefined"가 되며, 그렇지 않으면 클라이언트에서 실행하게 됩니다.
+
+function IndexPage() {
+    const side = typeof window === "usdefined" ? 'server' : 'client';
+
+    return <div> You're currently on toeh {side}-side.</div>;
+}
+
+export default IndexPage;
+
+동적 컴포넌트 로딩 - dynamic
+
+- 앞서 React.useEffect 훅을 사용하여 브라우저에서 코드를 실행하는 경우에만 컴포넌트를 렌더링 해 보았습니다.
+
+- dynamic 함수로도 똑같이 동작하게 할 수 있습니다.
+
+- 다음 코드를 실행하면 Highlight 컴포넌트를 동적 임포트 (dynamic import)로 불러옵니다.
+
+- 즉, ssr:flase 옵션으로 클라이언트에서만 코드를 실행한다고 명시하는 것입니다.
+
+<!-- import dynamic from 'next/dynamic';
+
+const Highlight = dynamic(
+    () => import('../componenets/Highlight'),
+    { ssr: false}
+
+);
+
+import styles from '../styles/Home.module.css';
+
+function DynamicPage() {
+    return (
+        <div className={styles.main}>
+        <Highlight code={`console.log('Hello, world! ')`}language="js" />
+        </div>
+    );
+}
+
+export default DynamicPage; -->
+
+2.3 정적 사이트 생성(SSG: Static Site Generation)
+- SSG는 일부 똔느 전체 페이지를 빌드 시점에 미리 렌더링 합니다.
+
+- SSG는 SSR 및 CSR과 비교했을 때 다음과 같은 장점이 있습니다.
+
+1. 쉬운 확장
+
+ 정적 페이지는 단순 HTML로파일이므로 CDN을 통해 파일을 제공하거나, 캐시에 저장하기 쉽습니다.
+
+ 2. 뛰어난 성능
+ 빌드 시점에 HTML페이지를 미리 렌더링하기 때문에 페이지를 요청해도 클라이언트나 서버가 무언가를 처리할 필요가 없습니다.
+
+ 3. 더 안전한 API요청
+
+ 외부 API를 호출하거나, 데이터베이스에 접근하거나, 보호해야 할 데이터에 접근할 일이 없습니다.
+
+ 필요한 모든 정보가 빌드 시점에 미리 페이지로 렌더링 되어 있기 때문입니다.
+
