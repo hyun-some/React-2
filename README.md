@@ -86,3 +86,14 @@ function IndexPage(props) {
 
 export default IndexPage;
 
+- 페이지에 대한 요청이 들어오면 서버가 REST API를 호출해서 필요한 사용자 정보를 가져옵니다.
+
+- 이 과정은 다음과 같은 세부 단계로 나눌 수 있습니다.
+
+1. getServerSideProps라는 비동기 함수를 exprot합니다. 빌드 과정에서 Next.js는 이 함수를 export하는 모든 페이지를 찾아서 서버가 페이지 요청을 처리할때 getServerSideProps 함수를 호출하도록 만듭니다.
+
+2. getServerSideProps 함수는 props라는 속성값을 갖는 객체를 반환합니다. 이 props는 컴포넌트로 전달되 서버와 클라이언트 모두가 props 에 접근할 수 있게 됩니다. fetch API는 서버에서 실행되기 때문에 별도의 폴리필을 끼워 넣을 필요는 없습니다.
+
+3. IndexPage 함수를 수정해서 props를 인자로 받습니다. 이 props는 getServerSideProps 함수에서 반환한 props의 모든 내용을 갖고 있습니다.
+
+#Next.js14부터는 하나의 API만 사용합니다.
