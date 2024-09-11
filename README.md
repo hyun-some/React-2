@@ -155,3 +155,33 @@ export default IndexPage;
     - 최근 리액트는 하뭇형 컴포넌트 사용을 강조하면서 life cycle함수 대신 Hook 을 사용합니다.
 
     - 함수형 컴포넌트 내에서 DOM 조작이나 데이터 불러오기 같은 사이드 이펙트 기능을 구현할 때, useEffect 함수를 사용해서 컴포넌트가 마운트된 후 해당 기능을 실행하도록 만들 수 있습니다.
+
+코드 설명(40~41p)
+
+CSR인 React에서는 다음 코드가 문제없이 작동하지만 Next.js의 빌드 과정에서는 문제가 생깁니다.
+
+- Highlight.js 라이브러리가 document라는 전역 변수를 사용하는데, 이 변수는 Node.js에서 제공하지 않으며 오직 브라우저에서만 접근할 수 있긴 때문입니다.
+
+- 이 문제는 hljs 호출을 useEffect 훅으로 감싸서 해결할 수 있습니다.
+
+import Head from 'next/head';
+import hljs from 'highlight.js';
+import javascript from 'highlight.js/lib/languages/javascript';
+
+function Highlight({ code }) {
+    hljs.registerLanguage('javascript', javascript);
+    hljs.initHlightLighting();
+
+    return (
+        <>
+        <Head>
+        <link rel = 'stylesheet' href='/highlight.css' />
+        </Head>
+        <pre>
+            <code className='js'> {code}</code>
+            </pre>
+            </>
+    );
+}
+
+export default Highlight;
