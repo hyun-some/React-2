@@ -97,3 +97,22 @@ export default IndexPage;
 3. IndexPage 함수를 수정해서 props를 인자로 받습니다. 이 props는 getServerSideProps 함수에서 반환한 props의 모든 내용을 갖고 있습니다.
 
 #Next.js14부터는 하나의 API만 사용합니다.
+
+2.2 클라이언트 사이더 렌더링(CSR)
+
+- React 앱을 실행하면 렌더링 시작전에 빈 화면이 한동안 유지되는 것이 보입니다.
+
+- 이는 서버에서 스크립트와 스타일만 포함된 HTML을 전송하기 때문입니다.
+
+- 실제 렌더링은 클라이언트에서 이루어 집니다.
+
+- CSR로 생성한 앱의 HTML을 보면 div태그 하나 밖에 없습니다. 그래서 빈 화면만 보였던 겁니다.
+
+- 빌드 과정에서 js와 css파일을 HTML페잊이에 불러오도록 만들고 root div에 렌더링 합니다.
+
+// <body>
+        <noscript>
+        You need to enable JavaScript to run this app.
+        </noscript>
+        <div id="root"></div>
+    </body>
