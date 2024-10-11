@@ -129,7 +129,17 @@ react2
      - Pixabay 나 Unplash와 같은 외부 이미지 서비스로 이미지를 제공할 수 있습니다.
       
 
-
+1. Image component - local
+- Image 컴포넌트를 사용하면 다양한 props를 전달 할 수 있습니다.
+- 주요 props
+- src =""
+- width={500}
+- height={500}
+- alt=""
+- Placeholder = "blue"
+//외부 이미지는 blurDataURL=''로 처리
+- loading = "lazy"
+- Props 참고
 
 ### 9/25
 <div>
