@@ -5,6 +5,22 @@ react2
 
 
 
+### 10/11
+1. Page Project Laout - app
+    - _app.jsx는 서버에 요청할 때 가장 먼저 실행되는 컴포넌트입니다.
+    - 페이지에 적용할 공통 레이아웃을 선언하는 곳입니다.
+    - 기본 코드는 다음과 같습니다.
+      import "@/styles/globals.css";
+
+      export default function App({ Component, pageProps}) {
+      return <Componenet {...pageProps} />;
+      }
+    - Global CSS는 이곳에 추가됩니다.
+    - props 중 Component는 서버에 요청한 페이지입니다.
+    - pageProps는 App.genInitialProps를 이용하여 prefetching 된 데이터를 반환합니다.
+    - 데이터가 없다면 빈 객체({})를 반환합니다.
+    - 단, getStaticProps, getServerSideProps와 같은 Data Fetching methods는 동작하지 않습니다.
+
 
 
 ### 9/25
