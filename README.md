@@ -4,6 +4,8 @@ react2
 ### 202030328 정현철
 
 
+
+
 ### 10/23
 1. Static Resource
    - 정적 자원 중 이미지 파일은 SEO에 많은 영향을 미칩니다.
@@ -33,6 +35,13 @@ react2
    - 이미지를 불러오는 방법은 직접 불러오는 방법과 import하는 방법 2가지가 있습니다.
    - 이미지의 경로/images/[이미지 이름.확장자]로 합니다. 이 때 public은 생략합니다
 
+
+1. Image component - Remote
+ - Pixabay와 같은 외부 이미지를 사용하려면 next.config.mjs에 URL을 추가해 줘야합니다.
+ - 만일 파일이 없다면 Project root에 추가해 주면 됩니다.
+ - 파일의 초기 상태는 다음과 같습니다.
+ - nextConfig에 images를 추가합니다.
+ - 간단하게 domains만 등록해 줘도 되지만, 공식 사이트의 추천은 두번째 코드와 같습니다.
 
 ### 10/11
 1. Page Project Laout - app
