@@ -4,6 +4,35 @@ react2
 ### 202030328 정현철
 
 
+### 10/23
+1. Static Resource
+   - 정적 자원 중 이미지 파일은 SEO에 많은 영향을 미칩니다.
+   - 다운로드 시간이 많이 걸리고, 렌더링 후에 레이아웃이 변경되는 등 UX에 영향을 미칩니다.
+   - 이것을 누적 레이아웃 이동(CLS: Cumulative Layout Shift)이라고 합니다.
+   - Image 컴포넌트를 사용하면 CLS문제를 해결합니다.
+   - lazy loading: 이미지 로드 시점을 필요할때까지 지연시키는 기술입니다.
+   - 이미지 사이즈 최적화로 사이즈를 1/10 이하로 줄여 줍니다
+   - Placeholder를 제공합니다
+1. Image component - local
+   - WebP와 같은 최신 이미지 포맷 및 최신 포맷을 지원하지 않는 브라우저를 위해 PNG나 JPGE와 같은 예전 이미지 포맷도 제공합니다.
+   - Pixabay나 Unsplash 와 같은 외부 이미지 서비스로 이미지를 제공할 수 있습니다.
+   - Image 컴포넌트를 사용하면 다양한 props를 전달할 수 있습니다.
+     [주요 props]
+     src=""
+     width= {500}
+     height= {500}
+     alt=""
+     Placeholder = "blue"
+     //외부 이미지는 blurDataURL=''로 처리
+     loading="lazy"
+
+   - 정적 자원은 기본적으로 public 디렉토리에 저장합니다.
+   - 정적 자원은 번들링 이후에도 변하지 않기 때문입니다.
+   - 여러 종류의 정적 자원을 사용할 경우 public의 root에 각각 디렉토리를 만들어 사용합니다.
+   - Image도 마찬가지로 /public/images 디렉토리를 만들고 사용합니다.
+   - 이미지를 불러오는 방법은 직접 불러오는 방법과 import하는 방법 2가지가 있습니다.
+   - 이미지의 경로/images/[이미지 이름.확장자]로 합니다. 이 때 public은 생략합니다
+
 
 ### 10/11
 1. Page Project Laout - app
