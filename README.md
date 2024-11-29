@@ -3,6 +3,22 @@ react2
 
 ### 202030328 정현철
 
+
+### 11/29
+1.1 Github Pages 기본 저장소 생성
+- 내용x
+- 이 저장소는 기본적인 Github Page로 이곳에 정적 페이지를 올리고 서비스를 운영가능
+- 외부에서<MyID>github.io로 접속가능
+- 구매한 도메인이 있다면 연결가능
+
+1.2 배포할 프로젝트 저장소 생성
+- <MyID>github.io로 만든 저장소를 기본 저장소라고 한 이유는 이 저장소가 있어야 나머지 저장소도 Page로 만들 수 있기 때문에.
+
+2.2 개인 Token을 이용한 Github 연동
+- 만일 push  명령에 다음과 같은 오류가 발생하면 이미 시스템에 다른 계정이 등록되어있는것
+- 이런 경우 Github에서 token을 발급받아 remote를 다시 등록해 주면 됩니다.
+- Github에 접속하여 오른쪽 상단의 계정아이콘을 클릭 후 setting메뉴를 선택
+
 ### 11/27
 
 4. Context API vs. Redux
@@ -102,6 +118,11 @@ Props 흐름의 이해
 - Next.js는 기본적으로 서버에서 렌더링하도록 설계되어, 클라이언트에서만 필요한 컴포넌트를 명시적으로 지정해야 할 필요가 있습니다.
 - 'use client'를 컴포넌트 상단에 선언하면 해당 컴포넌트는 클라이언트에서만 렌더링되며, 주로 상태 관리나 브라우저 전용 api사용이 필요한 경우에 사용됩니다.
 
+- $ $npx create-next-app@14
+npm run dev
+git init
+$ git config --local user.email hyun-some
+git remote -v
 3.1 Directory ㄱ조
 compoennts vs features Directory
 [components Directory ]
